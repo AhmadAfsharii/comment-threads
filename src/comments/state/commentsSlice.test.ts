@@ -1,12 +1,12 @@
 import store from '../../store';
 import { CommentFormInfo, Comment } from '../types';
-import { addComment, commentReply, cancelReply } from './commentsSlice';
+import { saveComment, commentReply, cancelReply } from './commentsSlice';
 
 const insertSingleComment = (commentInfo: CommentFormInfo): Comment | undefined => {
   let state = store.getState().comments;
   const initialCommentsCount = state.commentsList.length;
 
-  store.dispatch(addComment(commentInfo));
+  store.dispatch(saveComment(commentInfo));
 
   state = store.getState().comments;
   const newComment = state.commentsList.find(
@@ -44,7 +44,7 @@ test('Reply a comment', () => {
   if (parentComment) {
     store.dispatch(commentReply(parentComment));
 
-    const { replyComment } = store.getState().comments;
+    let { replyComment } = store.getState().comments;
     expect(replyComment).toBe(parentComment);
 
     const childComment = insertSingleComment({
@@ -53,6 +53,9 @@ test('Reply a comment', () => {
     });
 
     expect(childComment?.parentId).toBe(parentComment.id);
+
+    replyComment = store.getState().comments.replyComment;
+    expect(replyComment).toBe(null);
   }
 });
 

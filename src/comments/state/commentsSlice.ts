@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppThunk } from '../../store/types';
 
 import date from '../../utils/date';
 
@@ -37,10 +38,17 @@ const commentsReducer = createSlice({
   },
 });
 
-export const {
+const {
   addComment,
   cancelReply,
   commentReply,
 } = commentsReducer.actions;
+
+export { cancelReply, commentReply };
+
+export const saveComment = (commentInfo: CommentFormInfo): AppThunk => ((dispatch) => {
+  dispatch(addComment(commentInfo));
+  dispatch(cancelReply());
+});
 
 export default commentsReducer.reducer;
