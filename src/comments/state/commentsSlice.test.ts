@@ -1,6 +1,6 @@
-import store from '../store';
-import { Comment, CommentFormInfo } from '../types/comments';
-import { addComment, cancelReply, commentReply } from './commentsSlice';
+import store from '../../store';
+import { CommentFormInfo, Comment } from '../types';
+import { addComment, commentReply, cancelReply } from './commentsSlice';
 
 const insertSingleComment = (commentInfo: CommentFormInfo): Comment | undefined => {
   let state = store.getState().comments;

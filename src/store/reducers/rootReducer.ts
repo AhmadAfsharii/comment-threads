@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import commentsSlice from '../../features/commentsSlice';
+import commentsSlice from '../../comments/state/commentsSlice';
 
 const rootReducer = combineReducers({
   comments: commentsSlice,

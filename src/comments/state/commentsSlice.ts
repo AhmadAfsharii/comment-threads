@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import date from '../utils/date';
+import date from '../../utils/date';
 
-import { CommentFormInfo, Comment, CommentsStoreState } from '../types/comments';
+import { CommentFormInfo, Comment, CommentsStoreState } from '../types';
 
 const getDefaultState = (): CommentsStoreState => ({
   commentsList: [],
