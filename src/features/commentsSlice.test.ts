@@ -69,6 +69,6 @@ test('Cancel comment reply', () => {
     store.dispatch(cancelReply());
 
     const { replyComment } = store.getState().comments;
-    expect(replyComment).toBeFalsy();
+    expect(replyComment).toBe(null);
   }
 });
